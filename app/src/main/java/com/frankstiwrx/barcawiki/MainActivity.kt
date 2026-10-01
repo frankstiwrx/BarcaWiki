@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.frankstiwrx.barcawiki.ui.screens.WelcomeScreen
 import com.frankstiwrx.barcawiki.ui.theme.BarçaWikiTheme
+import com.frankstiwrx.barcawiki.navigation.BarcaWikiNavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BarçaWikiTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WelcomeScreen(
+                    BarcaWikiNavHost(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
