@@ -24,14 +24,13 @@ import androidx.compose.ui.unit.sp
 import com.frankstiwrx.barcawiki.data.model.Season
 import com.frankstiwrx.barcawiki.ui.theme.BarcaBlue
 import com.frankstiwrx.barcawiki.ui.theme.BarcaGarnet
-import com.frankstiwrx.barcawiki.data.repository.SeasonRepository
 
 @Composable
 fun SeasonsScreen(
+    seasons: List<Season>,
     modifier: Modifier = Modifier,
     onSeasonClick: (Season) -> Unit = {}
 ) {
-    val seasons = SeasonRepository.getSeasons()
 
     Box(
         modifier = modifier

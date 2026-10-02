@@ -7,7 +7,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.frankstiwrx.barcawiki.ui.screens.HomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.WelcomeScreen
-import com.frankstiwrx.barcawiki.ui.screens.SeasonsScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonsRoute
+import com.frankstiwrx.barcawiki.data.repository.SeasonRepository
+import com.frankstiwrx.barcawiki.ui.screens.SeasonDetailScreen
 
 @Composable
 fun BarcaWikiNavHost(
@@ -39,7 +41,28 @@ fun BarcaWikiNavHost(
         }
 
         composable("seasons") {
-            SeasonsScreen()
+            SeasonsRoute(
+                onSeasonClick = { season ->
+                    navController.navigate("season/${season.id}")
+                }
+            )
+        }
+
+        composable("season/{seasonId}") { backStackEntry ->
+
+            val seasonId = backStackEntry.arguments
+                ?.getString("seasonId")
+                ?.toIntOrNull()
+
+            val season = seasonId?.let {
+                SeasonRepository.getSeasonById(it)
+            }
+
+            if (season != null) {
+                SeasonDetailScreen(
+                    season = season
+                )
+            }
         }
 
     }

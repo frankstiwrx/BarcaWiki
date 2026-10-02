@@ -8,4 +8,9 @@ object SeasonRepository {
     fun getSeasons(): List<Season> {
         return SeasonDataSource.seasons
     }
+    fun getSeasonById(id: Int): Season? {
+        return SeasonDataSource.seasons.find { season ->
+            season.id == id
+        }
+    }
 }
