@@ -30,7 +30,12 @@ import com.frankstiwrx.barcawiki.ui.theme.BarcaBlue
 import com.frankstiwrx.barcawiki.ui.theme.BarcaGarnet
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onSeasonsClick: () -> Unit,
+    onPlayersClick: () -> Unit = {},
+    onMatchesClick: () -> Unit = {},
+    onQuizClick: () -> Unit = {}
+) {
 
     Box(
         modifier = Modifier
@@ -97,28 +102,32 @@ fun HomeScreen() {
 
             HomeMenuCard(
                 title = "Temporadas",
-                description = "Elencos, competições e campanhas"
+                description = "Elencos, competições e campanhas",
+                onClick = onSeasonsClick
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             HomeMenuCard(
                 title = "Jogadores",
-                description = "História, números e passagens pelo clube"
+                description = "História, números e passagens pelo clube",
+                onClick = onPlayersClick
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             HomeMenuCard(
                 title = "Partidas",
-                description = "Resultados e jogos históricos"
+                description = "Resultados e jogos históricos",
+                onClick = onMatchesClick
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             HomeMenuCard(
                 title = "Quiz",
-                description = "Teste seus conhecimentos sobre o Barça"
+                description = "Teste seus conhecimentos sobre o Barça",
+                onClick = onQuizClick
             )
 
         }
@@ -128,9 +137,11 @@ fun HomeScreen() {
 @Composable
 fun HomeMenuCard(
     title: String,
-    description: String
+    description: String,
+    onClick: () -> Unit
 ) {
     Card(
+        onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = Color.White.copy(alpha = 0.12f)
@@ -160,5 +171,7 @@ fun HomeMenuCard(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(
+        onSeasonsClick = {}
+    )
 }

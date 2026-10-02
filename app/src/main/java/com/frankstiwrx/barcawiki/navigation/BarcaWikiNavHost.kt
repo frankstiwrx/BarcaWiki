@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.frankstiwrx.barcawiki.ui.screens.HomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.WelcomeScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonsScreen
 
 @Composable
 fun BarcaWikiNavHost(
@@ -30,7 +31,16 @@ fun BarcaWikiNavHost(
         }
 
         composable("home") {
-            HomeScreen()
+            HomeScreen(
+                onSeasonsClick = {
+                    navController.navigate("seasons")
+                }
+            )
         }
+
+        composable("seasons") {
+            SeasonsScreen()
+        }
+
     }
 }
