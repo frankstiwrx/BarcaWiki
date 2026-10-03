@@ -10,6 +10,10 @@ import com.frankstiwrx.barcawiki.ui.viewmodel.SeasonDetailViewModel
 @Composable
 fun SeasonDetailRoute(
     seasonId: Int,
+    onSquadClick: () -> Unit = {},
+    onCompetitionsClick: () -> Unit = {},
+    onMatchesClick: () -> Unit = {},
+    onStatisticsClick: () -> Unit = {},
     viewModel: SeasonDetailViewModel = viewModel()
 ) {
 
@@ -21,7 +25,8 @@ fun SeasonDetailRoute(
 
     uiState.season?.let { season ->
         SeasonDetailScreen(
-            season = season
+            season = season,
+            onSquadClick = onSquadClick
         )
     }
 }

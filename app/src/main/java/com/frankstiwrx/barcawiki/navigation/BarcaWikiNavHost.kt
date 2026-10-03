@@ -9,6 +9,10 @@ import com.frankstiwrx.barcawiki.ui.screens.HomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.WelcomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.SeasonsRoute
 import com.frankstiwrx.barcawiki.ui.screens.SeasonDetailRoute
+import com.frankstiwrx.barcawiki.ui.screens.SeasonSquadScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonCompetitionsScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonMatchesScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonStatisticsScreen
 
 @Composable
 fun BarcaWikiNavHost(
@@ -55,9 +59,43 @@ fun BarcaWikiNavHost(
 
             if (seasonId != null) {
                 SeasonDetailRoute(
-                    seasonId = seasonId
+                    seasonId = seasonId,
+
+                    onSquadClick = {
+                        navController.navigate("season/$seasonId/squad")
+                    },
+
+                    onCompetitionsClick = {
+                        navController.navigate("season/$seasonId/competitions")
+                    },
+
+                    onMatchesClick = {
+                        navController.navigate("season/$seasonId/matches")
+                    },
+
+                    onStatisticsClick = {
+                        navController.navigate("season/$seasonId/statistics")
+                    }
                 )
             }
+        }
+        composable("season/{seasonId}/squad") {
+            SeasonSquadScreen()
+        }
+
+        composable("season/{seasonId}/competitions") {
+            SeasonCompetitionsScreen()
+        }
+
+        composable("season/{seasonId}/matches") {
+            SeasonMatchesScreen()
+        }
+
+        composable("season/{seasonId}/statistics") {
+            SeasonStatisticsScreen()
+        }
+        composable("season/{seasonId}/squad") {
+            SeasonSquadScreen()
         }
     }
 }

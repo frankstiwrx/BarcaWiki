@@ -27,7 +27,11 @@ import com.frankstiwrx.barcawiki.ui.theme.BarcaGarnet
 @Composable
 fun SeasonDetailScreen(
     season: Season,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSquadClick: () -> Unit = {},
+    onCompetitionsClick: () -> Unit = {},
+    onMatchesClick: () -> Unit = {},
+    onStatisticsClick: () -> Unit = {}
 ) {
 
     LazyColumn(
@@ -83,28 +87,32 @@ fun SeasonDetailScreen(
         item {
             SeasonSectionCard(
                 title = "Elenco",
-                description = "Jogadores da temporada"
+                description = "Jogadores da temporada",
+                onClick = onSquadClick
             )
         }
 
         item {
             SeasonSectionCard(
                 title = "Competições",
-                description = "Campanhas e títulos"
+                description = "Campanhas e títulos",
+                onClick = onCompetitionsClick
             )
         }
 
         item {
             SeasonSectionCard(
                 title = "Partidas",
-                description = "Todos os jogos da temporada"
+                description = "Todos os jogos da temporada",
+                onClick = onMatchesClick
             )
         }
 
         item {
             SeasonSectionCard(
                 title = "Estatísticas",
-                description = "Números e desempenho"
+                description = "Números e desempenho",
+                onClick = onStatisticsClick
             )
         }
     }
@@ -113,10 +121,12 @@ fun SeasonDetailScreen(
 @Composable
 fun SeasonSectionCard(
     title: String,
-    description: String
+    description: String,
+    onClick: () -> Unit = {}
 ) {
 
     Card(
+        onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = Color.White.copy(alpha = 0.12f)
