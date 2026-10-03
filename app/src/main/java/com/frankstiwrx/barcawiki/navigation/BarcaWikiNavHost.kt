@@ -9,10 +9,10 @@ import com.frankstiwrx.barcawiki.ui.screens.HomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.WelcomeScreen
 import com.frankstiwrx.barcawiki.ui.screens.SeasonsRoute
 import com.frankstiwrx.barcawiki.ui.screens.SeasonDetailRoute
-import com.frankstiwrx.barcawiki.ui.screens.SeasonSquadScreen
 import com.frankstiwrx.barcawiki.ui.screens.SeasonCompetitionsScreen
 import com.frankstiwrx.barcawiki.ui.screens.SeasonMatchesScreen
 import com.frankstiwrx.barcawiki.ui.screens.SeasonStatisticsScreen
+import com.frankstiwrx.barcawiki.ui.screens.SeasonSquadRoute
 
 @Composable
 fun BarcaWikiNavHost(
@@ -79,8 +79,17 @@ fun BarcaWikiNavHost(
                 )
             }
         }
-        composable("season/{seasonId}/squad") {
-            SeasonSquadScreen()
+        composable("season/{seasonId}/squad") { backStackEntry ->
+
+            val seasonId = backStackEntry.arguments
+                ?.getString("seasonId")
+                ?.toIntOrNull()
+
+            if (seasonId != null) {
+                SeasonSquadRoute(
+                    seasonId = seasonId
+                )
+            }
         }
 
         composable("season/{seasonId}/competitions") {
@@ -93,9 +102,6 @@ fun BarcaWikiNavHost(
 
         composable("season/{seasonId}/statistics") {
             SeasonStatisticsScreen()
-        }
-        composable("season/{seasonId}/squad") {
-            SeasonSquadScreen()
         }
     }
 }
