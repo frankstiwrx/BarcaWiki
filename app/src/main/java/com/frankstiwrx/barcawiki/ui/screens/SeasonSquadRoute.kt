@@ -20,7 +20,7 @@ fun SeasonSquadRoute(
     }
 
     SeasonSquadScreen(
-        seasonId = seasonId,
+        seasonName = uiState.season?.name ?: "",
         players = uiState.players
     )
 }
